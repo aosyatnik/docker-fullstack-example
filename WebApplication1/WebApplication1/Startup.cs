@@ -21,6 +21,15 @@ namespace WebApplication1
         {
             services.AddControllers();
 
+            // Allow all.
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+
             services.AddSingleton<IDatabase, MyDatabase>();
         }
 
@@ -31,6 +40,8 @@ namespace WebApplication1
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
 
