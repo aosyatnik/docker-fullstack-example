@@ -1,3 +1,6 @@
 /WebApplication1/.vs
 /WebApplication1/WebApplication1/obj
 /WebApplication1/WebApplication1/bin
+/angular-client/.editorconfig
+/angular-client/node_modules
+/angular-client/dist

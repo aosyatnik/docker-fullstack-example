@@ -20,7 +20,8 @@ services:
     ports:
       - 9092:80
   my_server:
-    build: .
+    build:
+      context: ./WebApplication1
     depends_on:
       - db
     links:
@@ -32,3 +33,9 @@ services:
       DB_PASSWORD: postgres123
       DB_HOST: db
       DB_PORT: 5432
+  my_client:
+    build: ./angular-client
+    depends_on:
+      - my_server
+    ports:
+      - 9094:3000

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Model } from './model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DataProviderService {
    }
 
    getData(): Promise<Array<Model>> {
-    return this._http.get<Array<Model>>('https://localhost:44316/values')
+    return this._http.get<Array<Model>>(`${environment.baseUri}/values`)
     /*.pipe((x: Array<any>) => {
       const result = new Array<Model>();
       for (let i = 0; i < x.length; i++) {
