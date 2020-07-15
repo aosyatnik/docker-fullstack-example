@@ -1,0 +1,6 @@
+<button (click)="getData()">Get data!</button>
+<button (click)="sendData()">Send data!</button>
+<input type="number" (change)='sendValue=$event.target.value' [value]="sendValue" />
+<li *ngFor="let d of data">
+    id={{d.id}} value={{d.value}}
+</li>
