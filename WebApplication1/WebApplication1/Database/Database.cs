@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 
 namespace WebApplication1.Database
@@ -7,12 +8,19 @@ namespace WebApplication1.Database
     {
         public DbSet<Model> Models { get; set; }
 
+        private readonly IConfiguration _config;
+
+        public MyDatabase(IConfiguration config)
+        {
+            _config = config;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "";
-            var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "";
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
-            var dbPort = Environment.GetEnvironmentVariable("DB_PORT") ?? "5432";
+            var dbUser = _config["Database:DB_USER"] ?? "";
+            var dbPassword = _config["Database:DB_PASSWORD"] ?? "";
+            var dbHost = _config["Database:DB_HOST"] ?? "localhost";
+            var dbPort = _config["Database:DB_PORT"] ?? "5432";
             var dbName = "postgres";
 
             var connectionString = $"User Id={dbUser};Host={dbHost};Port={dbPort};Password={dbPassword};Database={dbName};";

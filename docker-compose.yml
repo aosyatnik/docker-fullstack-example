@@ -29,10 +29,10 @@ services:
     ports:
       - 9093:80
     environment:
-      DB_USER: postgres
-      DB_PASSWORD: postgres123
-      DB_HOST: db
-      DB_PORT: 5432
+      Database__DB_USER: postgres
+      Database__DB_PASSWORD: postgres123
+      Database__DB_HOST: db
+      Database__DB_PORT: 5432
   my_client:
     build: ./angular-client
     depends_on:
